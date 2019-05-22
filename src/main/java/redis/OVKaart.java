@@ -1,6 +1,7 @@
 package redis;
 
 import com.google.gson.annotations.SerializedName;
+
 import com.google.gson.annotations.Expose;;
 
 public class OVKaart {
@@ -9,7 +10,7 @@ public class OVKaart {
 	private int id;
   @SerializedName("kaartnummer")
   @Expose
-  private String kaartnummer;
+  private int kaartnummer;
   @SerializedName("geldigTot")
   @Expose
   private String geldigTot;
@@ -18,12 +19,12 @@ public class OVKaart {
   private String klasse;
   @SerializedName("saldo")
   @Expose
-  private String saldo;
+  private int saldo;
   @SerializedName("reizigerID")
   @Expose
-	private String reizigerID;
+	private int reizigerID;
 
-	public OVKaart(int id ,String kaartnummer, String geldigTot, String klasse, String saldo, String reizigerID) {
+	public OVKaart(int id ,int kaartnummer, String geldigTot, String klasse, int saldo, int reizigerID) {
 		this.id = id;
 		this.kaartnummer = kaartnummer;
 		this.geldigTot = geldigTot;
@@ -37,11 +38,11 @@ public class OVKaart {
 		return id;
 	}
 
-	public String getKaartnummer() {
+	public int getKaartnummer() {
 		return kaartnummer;
 	}
 
-	public void setKaartnummer(String kaartnummer) {
+	public void setKaartnummer(int kaartnummer) {
 		this.kaartnummer = kaartnummer;
 	}
 
@@ -61,19 +62,19 @@ public class OVKaart {
 		this.klasse = klasse;
 	}
 
-	public String getSaldo() {
+	public int getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(String saldo) {
+	public void setSaldo(int saldo) {
 		this.saldo = saldo;
 	}
 
-	public String getReizigerID() {
+	public int getReizigerID() {
 		return reizigerID;
 	}
 
-	public void setReizigerID(String reizigerID) {
+	public void setReizigerID(int reizigerID) {
 		this.reizigerID = reizigerID;
 	}
 

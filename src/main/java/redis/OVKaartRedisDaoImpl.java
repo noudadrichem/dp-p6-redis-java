@@ -17,52 +17,72 @@ public class OVKaartRedisDaoImpl extends RedisBaseDao implements OVKaartDao {
    }
 
    @Override
-   public OVKaart save(OVKaart OVkaart) {
-      Jedis conn = getConnection();
-
-      String reizigerJsonObj = gson.toJson(OVkaart);
-      conn.set("reiziger-" + OVkaart.getId(), reizigerJsonObj);
-
-      return OVkaart;
-   }
-
-   @Override
    public List<OVKaart> findAll() {
       Jedis conn = getConnection();
       
       List<OVKaart> tempOVKaarts = new ArrayList<OVKaart>();
-      for(String key : conn.keys("OVKaart-*")) {
+      for(String key : conn.keys("ovchipkaart-*")) {
          OVKaart OVKaartFromDb = gson.fromJson(conn.get(key), OVKaart.class);
          tempOVKaarts.add(OVKaartFromDb);
       }
       
       return tempOVKaarts;
    }
-
+   
+   
    @Override
-   public List<Reiziger> findByGBdatum(String geboortedatum) {
+   public List<OVKaart> findByKey(int reizigerID) {
       Jedis conn = getConnection();
       
-      List<Reiziger> tempReizigers = new ArrayList<Reiziger>();
-      for(String key : conn.keys("reiziger-*")) {
-         Reiziger reizigerFromDb = gson.fromJson(conn.get(key), Reiziger.class);
-
-         if(
-            reizigerFromDb.getGeboortedatum() != null && 
-            reizigerFromDb.getGeboortedatum().equals(geboortedatum)) {
-            tempReizigers.add(reizigerFromDb);
+      List<OVKaart> tempReizigers = new ArrayList<OVKaart>();
+      for(String key : conn.keys("ovchipkaart-*")) {
+         OVKaart OVKaartFromDB = gson.fromJson(conn.get(key), OVKaart.class);
+         
+         if( 
+            OVKaartFromDB.getKaartnummer() == (reizigerID)) {
+               tempReizigers.add(OVKaartFromDB);
          }
       }
       
       return tempReizigers;
    }
+   
 
+   @Override
+   public List<OVKaart> findByReiziger(int kaartnummer) {
+      Jedis conn = getConnection();
+      
+      List<OVKaart> tempReizigers = new ArrayList<OVKaart>();
+      for(String key : conn.keys("ovchipkaart-*")) {
+         OVKaart OVKaartFromDB = gson.fromJson(conn.get(key), OVKaart.class);
+         
+         if( 
+            OVKaartFromDB.getReizigerID() == (kaartnummer)) {
+               tempReizigers.add(OVKaartFromDB);
+         }
+      }
+      
+      return tempReizigers;
+   }
+   
+   
+   @Override
+   public OVKaart save(OVKaart OVkaart) {
+      Jedis conn = getConnection();
+
+      String ovChipJsonObject = gson.toJson(OVkaart);
+      conn.set("ovchipkaart-" + OVkaart.getId(), ovChipJsonObject);
+
+      return OVkaart;
+   }
+   
+   
    @Override
    public OVKaart update(OVKaart OVKaart) {
       save(OVKaart);
       return OVKaart;
    }
-
+   
    @Override
    public boolean delete(OVKaart OVKaart) {
       Jedis conn = getConnection();

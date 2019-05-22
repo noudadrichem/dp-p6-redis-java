@@ -6,9 +6,9 @@ public interface OVKaartDao {
 	
 	public List<OVKaart> findAll();
 
-	public List<OVKaart> findByKey(String kaartnummer);
+	public List<OVKaart> findByKey(int kaartnummer);
 	
-	public List<OVKaart> findByReiziger(String reizigerID);
+	public List<OVKaart> findByReiziger(int reizigerID);
 	
 	public OVKaart save(OVKaart OVKaart);
 	

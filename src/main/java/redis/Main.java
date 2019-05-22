@@ -31,5 +31,28 @@ class Main {
     // Verwijder reiziger
     System.out.println("- Reiziger is verwijderd: " + reizigerRedisDao.delete(reiziger4));
 
-  }
+
+		OVKaartRedisDaoImpl OVKaartRedisDaoImpl = new OVKaartRedisDaoImpl();
+		OVKaart ov1 = new OVKaart(1, 22222, "2020-12-12", "student", 11, 1);
+		OVKaart ov2 = new OVKaart(2, 33333, "2019-06-13", "student", 52, 2);
+		OVKaart ov3 = new OVKaart(3, 44444, "2021-08-24", "student", 13, 3);
+
+		System.out.println("- Opgeslagen OVKaart:" + OVKaartRedisDaoImpl.save(ov1).toString());
+		System.out.println("- Opgeslagen OVKaart:" + OVKaartRedisDaoImpl.save(ov2).toString());
+		System.out.println("- Opgeslagen OVKaart:" + OVKaartRedisDaoImpl.save(ov3).toString());
+	
+		System.out.println("- Zoek op OVkaart nummer: 46392\n " + OVKaartRedisDaoImpl.findByKey(22222));
+		System.out.println("- Zoek op ReizigerID: 5 ->\n " + OVKaartRedisDaoImpl.findByReiziger(1));
+
+		ov3.setSaldo(30);
+		ov3.setKlasse("business-card");
+		System.out.println("- OV Kaart is geupdate: " + OVKaartRedisDaoImpl.update(ov3).toString());
+		
+
+		// Alle OVKaarten zoeken
+		System.out.println(OVKaartRedisDaoImpl.findAll());
+
+		// verwijder reiziger
+		// System.out.println("- OV Kaart is verwijderd: " + OVKaartRedisDaoImpl.delete(ov1));
+	}
 }
