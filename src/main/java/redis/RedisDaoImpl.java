@@ -41,7 +41,20 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
 
    @Override
    public List<Reiziger> findByGBdatum(String geboortedatum) {
-      return null;
+      Jedis conn = getConnection();
+      
+      List<Reiziger> tempReizigers = new ArrayList<Reiziger>();
+      for(String key : conn.keys("reiziger-*")) {
+         Reiziger reizigerFromDb = gson.fromJson(conn.get(key), Reiziger.class);
+
+         if(
+            reizigerFromDb.getGeboortedatum() != null && 
+            reizigerFromDb.getGeboortedatum().equals(geboortedatum)) {
+            tempReizigers.add(reizigerFromDb);
+         }
+      }
+      
+      return tempReizigers;
    }
 
    @Override
@@ -54,14 +67,6 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
    public boolean delete(Reiziger reiziger) {
       Jedis conn = getConnection();
       conn.del("reiziger-" +reiziger.getId());
+      return true;
    }
-   
-      
-   //    String jsonReiziger = jedis.get("reizigers");
-   //    System.out.println(jsonReiziger);
-   //    Gson gson = new Gson(); // Or use new GsonBuilder().create();
-   //    Type listType = new TypeToken<List<String>>() {}.getType();
-   //    Reiziger reiziger = gson.fromJson(jsonReiziger, Reiziger.class);
-   //    System.out.print(reiziger);
-   // } 
 } 

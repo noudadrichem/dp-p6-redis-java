@@ -18,13 +18,13 @@ class Main {
     // Alle reizigers vinden
     System.out.println(reizigerOracleDao.findAll());
 
-    // // Reizigers zoeken op geboortedatum
-    // System.out.println(reizigerOracleDao.findByGBdatum("17-09-02"));
+    // Reizigers zoeken op geboortedatum
+    System.out.println(reizigerOracleDao.findByGBdatum("1998/05/13"));
 
-    // // Gegevens reiziger aanpassen en opslaan
-    // reiziger3.setVoorletters("PK");
-    // reiziger3.setAchternaam("Mage");
-    // System.out.println("- Reiziger is geupdate: " + reizigerOracleDao.update(reiziger3).toString());
+    // Gegevens reiziger aanpassen en opslaan
+    reiziger3.setVoorletters("PK");
+    reiziger3.setAchternaam("Mage");
+    System.out.println("- Reiziger is geupdate: " + reizigerOracleDao.update(reiziger3).toString());
 
     // // Verwijder reiziger
     // System.out.println("- Reiziger is verwijderd: " + reizigerOracleDao.delete(reiziger1));
