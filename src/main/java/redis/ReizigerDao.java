@@ -3,7 +3,6 @@ package redis;
 import java.util.*;
 
 public interface ReizigerDao {
-	
 	public List<Reiziger> findAll();
 	
 	public List<Reiziger> findByGBdatum(String geboortedatum);

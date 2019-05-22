@@ -2,17 +2,15 @@ package redis;
 
 import com.google.gson.Gson;
 import redis.clients.jedis.Jedis;
-import java.lang.reflect.Type;
-import com.google.gson.reflect.TypeToken;
 import java.util.*;
 
-public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
+public class ReizigerRedisDaoImpl extends RedisBaseDao implements ReizigerDao {
 
    private Gson gson;
+   private static final String REIZIGER_CODE = "reiziger-";
 
-   public RedisDaoImpl() {
+   public ReizigerRedisDaoImpl() {
       super();
-
       gson = new Gson();
    }
 
@@ -21,7 +19,7 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
       Jedis conn = getConnection();
 
       String reizigerJsonObj = gson.toJson(reiziger);
-      conn.set("reiziger-" + reiziger.getId(), reizigerJsonObj);
+      conn.set(REIZIGER_CODE + reiziger.getId(), reizigerJsonObj);
 
       return reiziger;
    }
@@ -31,7 +29,7 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
       Jedis conn = getConnection();
       
       List<Reiziger> tempReizigers = new ArrayList<Reiziger>();
-      for(String key : conn.keys("reiziger-*")) {
+      for(String key : conn.keys(REIZIGER_CODE + "*")) {
          Reiziger reizigerFromDb = gson.fromJson(conn.get(key), Reiziger.class);
          tempReizigers.add(reizigerFromDb);
       }
@@ -44,12 +42,10 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
       Jedis conn = getConnection();
       
       List<Reiziger> tempReizigers = new ArrayList<Reiziger>();
-      for(String key : conn.keys("reiziger-*")) {
+      for(String key : conn.keys(REIZIGER_CODE + "*")) {
          Reiziger reizigerFromDb = gson.fromJson(conn.get(key), Reiziger.class);
 
-         if(
-            reizigerFromDb.getGeboortedatum() != null && 
-            reizigerFromDb.getGeboortedatum().equals(geboortedatum)) {
+         if(reizigerFromDb.getGeboortedatum() != null &&  reizigerFromDb.getGeboortedatum().equals(geboortedatum)) {
             tempReizigers.add(reizigerFromDb);
          }
       }
@@ -66,7 +62,7 @@ public class RedisDaoImpl extends RedisBaseDao implements ReizigerDao {
    @Override
    public boolean delete(Reiziger reiziger) {
       Jedis conn = getConnection();
-      conn.del("reiziger-" +reiziger.getId());
+      conn.del(REIZIGER_CODE + reiziger.getId());
       return true;
    }
 } 

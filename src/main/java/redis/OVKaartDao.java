@@ -3,7 +3,6 @@ package redis;
 import java.util.*;
 
 public interface OVKaartDao {
-	
 	public List<OVKaart> findAll();
 
 	public List<OVKaart> findByKey(int kaartnummer);

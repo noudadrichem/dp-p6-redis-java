@@ -1,7 +1,6 @@
 package redis;
 
 import com.google.gson.annotations.SerializedName;
-
 import com.google.gson.annotations.Expose;;
 
 public class OVKaart {
@@ -32,7 +31,6 @@ public class OVKaart {
 		this.saldo = saldo;
 		this.reizigerID = reizigerID;
 	}
-
 
 	public int getId() {
 		return id;

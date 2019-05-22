@@ -1,7 +1,5 @@
 package redis;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;;
 

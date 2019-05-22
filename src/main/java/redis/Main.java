@@ -8,7 +8,7 @@ class Main {
     Reiziger reiziger3 = new Reiziger(3, "D", "", "Neuteboom");
     Reiziger reiziger4 = new Reiziger(4, "T", "", "dummy", "1998/05/13");
 
-    RedisDaoImpl reizigerRedisDao = new RedisDaoImpl();
+    ReizigerRedisDaoImpl reizigerRedisDao = new ReizigerRedisDaoImpl();
 
     // Reiziger toevoegen/opslaan:
 
