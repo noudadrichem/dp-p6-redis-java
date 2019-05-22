@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Expose;;
 
 public class OVKaart {
+	@SerializedName("id")
+	@Expose
+	private int id;
   @SerializedName("kaartnummer")
   @Expose
   private String kaartnummer;
@@ -20,7 +23,8 @@ public class OVKaart {
   @Expose
 	private String reizigerID;
 
-	public OVKaart(String kaartnummer, String geldigTot, String klasse, String saldo, String reizigerID) {
+	public OVKaart(int id ,String kaartnummer, String geldigTot, String klasse, String saldo, String reizigerID) {
+		this.id = id;
 		this.kaartnummer = kaartnummer;
 		this.geldigTot = geldigTot;
 		this.klasse = klasse;
@@ -28,6 +32,10 @@ public class OVKaart {
 		this.reizigerID = reizigerID;
 	}
 
+
+	public int getId() {
+		return id;
+	}
 
 	public String getKaartnummer() {
 		return kaartnummer;

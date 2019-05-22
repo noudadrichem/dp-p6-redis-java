@@ -21,7 +21,7 @@ public class OVKaartRedisDaoImpl extends RedisBaseDao implements OVKaartDao {
       Jedis conn = getConnection();
 
       String reizigerJsonObj = gson.toJson(OVkaart);
-      conn.set("reiziger-" + OVkaart.getKaartnummer(), reizigerJsonObj);
+      conn.set("reiziger-" + OVkaart.getId(), reizigerJsonObj);
 
       return OVkaart;
    }
@@ -58,15 +58,15 @@ public class OVKaartRedisDaoImpl extends RedisBaseDao implements OVKaartDao {
    }
 
    @Override
-   public Reiziger update(Reiziger reiziger) {
-      save(reiziger);
-      return reiziger;
+   public OVKaart update(OVKaart OVKaart) {
+      save(OVKaart);
+      return OVKaart;
    }
 
    @Override
-   public boolean delete(Reiziger reiziger) {
+   public boolean delete(OVKaart OVKaart) {
       Jedis conn = getConnection();
-      conn.del("reiziger-" +reiziger.getId());
+      conn.del("OVKaart-" +OVKaart.getId());
       return true;
    }
 } 
