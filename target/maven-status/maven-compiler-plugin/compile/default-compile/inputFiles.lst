@@ -1,2 +1,5 @@
-/Users/noudadrichem/eclipse-workspace/redis-poc-maven/poc/src/main/java/redis/App.java
-/Users/noudadrichem/eclipse-workspace/redis-poc-maven/poc/src/main/java/redis/RedisJava.java
+/home/captain/eclipse-workspace/dp-p6-redis-java/src/main/java/redis/ReizigerDao.java
+/home/captain/eclipse-workspace/dp-p6-redis-java/src/main/java/redis/Main.java
+/home/captain/eclipse-workspace/dp-p6-redis-java/src/main/java/redis/RedisBaseDao.java
+/home/captain/eclipse-workspace/dp-p6-redis-java/src/main/java/redis/RedisDaoImpl.java
+/home/captain/eclipse-workspace/dp-p6-redis-java/src/main/java/redis/Reiziger.java
